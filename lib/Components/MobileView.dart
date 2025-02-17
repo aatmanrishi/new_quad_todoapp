@@ -30,7 +30,7 @@ class MobileView extends StatelessWidget {
           Obx(() {
             if (uiController.isBottomSheath.value == true) {
               return Positioned(
-                bottom: 0,
+                bottom: 80,
                 left: 5,
                 right: 5,
                 child: BottomSheathComponent(),
