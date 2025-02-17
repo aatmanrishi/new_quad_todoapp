@@ -95,14 +95,14 @@ class YourPieChart extends StatelessWidget {
 
     // Prevent negative values if necessary
     double remainingValue = taskDataValue - completeDataValue;
-    if (remainingValue < 0) remainingValue = 0.0; // Ensure no negative values
+    // if (remainingValue < 0) remainingValue = 0.0; // Ensure no negative values
 
     return PieChart(
       PieChartData(
         sections: [
           // Completed Tasks Section
           PieChartSectionData(
-            value: completeDataValue,
+            value: uiController.completeData.length.toDouble(),
             showTitle: true,
 
             radius: 30,
@@ -110,7 +110,7 @@ class YourPieChart extends StatelessWidget {
           ),
           // Remaining Tasks Section
           PieChartSectionData(
-            value: remainingValue,
+            value: uiController.tasksData.length.toDouble(),
             showTitle: true,
 
             radius: 30,

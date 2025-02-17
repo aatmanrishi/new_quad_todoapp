@@ -60,7 +60,9 @@ class CustomDrawer extends StatelessWidget {
                 children: [
                   Expanded(
                       child: Container(
-                    color: Colors.green[50],
+                    color: uiController.isDarkMode.value == false
+                        ? Colors.green[50]
+                        : Color(0xFF2C2C2C),
                     height: 30,
                   ))
                 ],

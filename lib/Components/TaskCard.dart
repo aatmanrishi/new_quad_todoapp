@@ -95,8 +95,9 @@ class TaskCard extends StatelessWidget {
                       taskTitle.isEmpty
                           ? SizedBox()
                           : Text(
-                              "$taskTitle",
-                              
+                              taskTitle.length > 12
+                                  ? "${taskTitle.substring(0, 12)}..." // Add ellipsis if title is longer than 12 characters
+                                  : "$taskTitle",
                               maxLines: 3,
                               style: TextStyle(
                                   fontFamily: 'Outfit',

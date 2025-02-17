@@ -39,8 +39,8 @@ class GridWiseDisplaySection extends StatelessWidget {
                             child: TaskCard(
                               uiId: task.uiId,
                               taskTitle: task.taskHeading,
-                              taskDetails: task.taskDetails ,
-                              taskDaysRepeated: task.taskDaysRepeated ,
+                              taskDetails: task.taskDetails,
+                              taskDaysRepeated: task.taskDaysRepeated,
                               calendarDate: task.calendarDate,
                               reminderTime: task.reminderTime,
                               timeSavedAt: task.timeSavedAt,
@@ -78,7 +78,7 @@ class GridWiseDisplaySection extends StatelessWidget {
                             child: TaskCard(
                               uiId: task.uiId,
                               taskTitle: task.taskHeading,
-                              taskDetails: task.taskDetails ,
+                              taskDetails: task.taskDetails,
                               taskDaysRepeated: task.taskDaysRepeated,
                               calendarDate: task.calendarDate,
                               reminderTime: task.reminderTime,
@@ -114,8 +114,8 @@ class GridWiseDisplaySection extends StatelessWidget {
                           child: TaskCard(
                             uiId: task.uiId,
                             taskTitle: task.taskHeading,
-                            taskDetails: task.taskDetails ,
-                            taskDaysRepeated: task.taskDaysRepeated ,
+                            taskDetails: task.taskDetails,
+                            taskDaysRepeated: task.taskDaysRepeated,
                             calendarDate: task.calendarDate,
                             reminderTime: task.reminderTime,
                             timeSavedAt: task.timeSavedAt,
@@ -194,7 +194,7 @@ class GridWiseDisplaySection extends StatelessWidget {
                           child: TaskCard(
                             uiId: task.uiId,
                             taskTitle: task.taskHeading,
-                            taskDetails: task.taskDetails ,
+                            taskDetails: task.taskDetails,
                             taskDaysRepeated: task.taskDaysRepeated,
                             calendarDate: task.calendarDate,
                             reminderTime: task.reminderTime,

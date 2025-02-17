@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_quad_todoapp/UiController/UiController.dart';
 
 class DrawerProfileView extends StatelessWidget {
   const DrawerProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final uiController = Get.find<Uicontroller>();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
@@ -21,8 +24,10 @@ class DrawerProfileView extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Outfit',
               fontSize: 24,
-              color: Colors.black,
-              fontWeight: FontWeight.w700,
+              color: uiController.isDarkMode.value == false
+                  ? Colors.black
+                  : Colors.white,
+              fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
           ),
