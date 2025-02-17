@@ -127,39 +127,42 @@ class TaskCard extends StatelessWidget {
                         ),
                 ],
               ),
-              Spacer(),
-              Obx(() {
-                return isImportant
-                    ? IconButton(
-                        onPressed: () {
-                          print("Enter 1");
-                          changePriorityFunction(uiId);
-                        },
-                        icon: Icon(Icons.star, color: Colors.amber))
-                    : IconButton(
-                        onPressed: () {
-                          print("Enter 2");
-                          changePriorityFunction(uiId);
-                        },
-                        icon: Icon(
-                          Icons.star_border,
-                          color: uiController.isDarkMode.value == false
-                              ? Colors.black
-                              : Colors.white,
-                        ),
-                      );
-              }),
+              // Spacer(),
+
               SizedBox(
                 width: 30,
               ),
-              PopupMenuButton(
-                  itemBuilder: (context) => [
-                        PopupMenuItem(child: Text("Pending"), value: 0),
-                        PopupMenuItem(child: Text("Complete"), value: 1),
-                      ],
-                  onSelected: (value) {
-                    PopUpMenuFunction(value, uiId);
+              Row(
+                children: [
+                  Obx(() {
+                    return isImportant
+                        ? InkWell(
+                            onTap: () {
+                              changePriorityFunction(uiId);
+                            },
+                            child: Icon(Icons.star, color: Colors.amber))
+                        : InkWell(
+                            onTap: () {
+                              changePriorityFunction(uiId);
+                            },
+                            child: Icon(
+                              Icons.star_border,
+                              color: uiController.isDarkMode.value == false
+                                  ? Colors.black
+                                  : Colors.white,
+                            ),
+                          );
                   }),
+                  PopupMenuButton(
+                      itemBuilder: (context) => [
+                            PopupMenuItem(child: Text("Pending"), value: 0),
+                            PopupMenuItem(child: Text("Complete"), value: 1),
+                          ],
+                      onSelected: (value) {
+                        PopUpMenuFunction(value, uiId);
+                      }),
+                ],
+              ),
             ],
           ),
         ),
@@ -283,17 +286,9 @@ class TaskCard extends StatelessWidget {
 
           taskDaysRepeated.isEmpty
               ? SizedBox()
-              : Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ScheduledContainer(
-                        daysArray: taskDaysRepeated,
-                        isFunctionEnabled: false,
-                      ),
-                    ],
-                  ),
+              : ScheduledContainer(
+                  daysArray: taskDaysRepeated,
+                  isFunctionEnabled: false,
                 ),
 
           // Check if taskDetails is available
