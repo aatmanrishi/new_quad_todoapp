@@ -15,7 +15,7 @@ class ScheduledContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiController = Get.find<Uicontroller>();
-    final double screenWidth = MediaQuery.of(context).size.width;
+    // final double screenWidth = MediaQuery.of(context).size.width;
 
     // Adjusting layout based on screen width
     return Container(
