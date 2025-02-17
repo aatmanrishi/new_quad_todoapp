@@ -16,53 +16,59 @@ class Home extends StatelessWidget {
     final uiController = Get.find<Uicontroller>();
 
     return Obx(() {
-      return Scaffold(
-          backgroundColor: uiController.isDarkMode.value
-              ? Color(0xFF2C2C2C) // Dark mode background
-              : Colors.white, // Light mode background
-          key: _scaffoldKey,
-          drawer: CustomDrawer(),
-          appBar: AppBar(
+      return SafeArea(
+        child: Scaffold(
             backgroundColor: uiController.isDarkMode.value
                 ? Color(0xFF2C2C2C) // Dark mode background
-                : Colors.white, // Light mode background,
-            leading: IconButton(
-              icon: Icon(
-                Icons.menu,
-                size: 30,
-                color:
-                    uiController.isDarkMode.value ? Colors.white : Colors.black,
+                : Colors.white, // Light mode background
+            key: _scaffoldKey,
+            drawer: CustomDrawer(),
+            appBar: AppBar(
+              backgroundColor: uiController.isDarkMode.value
+                  ? Color(0xFF2C2C2C) // Dark mode background
+                  : Colors.white, // Light mode background,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  size: 30,
+                  color: uiController.isDarkMode.value
+                      ? Colors.white
+                      : Colors.black,
+                ),
+                onPressed: () {
+                  _scaffoldKey.currentState
+                      ?.openDrawer(); // Trigger the opening of the drawer
+                },
               ),
-              onPressed: () {
-                _scaffoldKey.currentState
-                    ?.openDrawer(); // Trigger the opening of the drawer
-              },
-            ),
-            title: Container(
-              child: Row(
-                children: [
-                  Image.asset(
-                    "assets/logomark.png",
-                    height: MediaQuery.of(context).size.width < 400 ? 30 : 50,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(width: 15),
-                  Text(
-                    'Todo App',
-                    style: TextStyle(
-                        fontFamily: 'Outfit',
-                        color: Colors.green,
-                        fontSize: MediaQuery.of(context).size.width < 400 ? 20 : 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
+              title: Container(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/logomark.png",
+                      height: MediaQuery.of(context).size.width < 400 ? 30 : 50,
+                      fit: BoxFit.contain,
+                    ),
+                    SizedBox(width: 15),
+                    Text(
+                      'Todo App',
+                      style: TextStyle(
+                          fontFamily: 'Outfit',
+                          color: Colors.green,
+                          fontSize:
+                              MediaQuery.of(context).size.width < 400 ? 20 : 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
+              actions: AppBarTrailingIcons,
             ),
-            actions: AppBarTrailingIcons,
-          ),
-          body: SingleChildScrollView(
-            child: MediaQuery.of(context).size.width <= 800 ? MobileView() : PcView(),
-          ));
+            body: SingleChildScrollView(
+              child: MediaQuery.of(context).size.width <= 800
+                  ? MobileView()
+                  : PcView(),
+            )),
+      );
     });
   }
 }
