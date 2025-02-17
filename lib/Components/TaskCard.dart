@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:intl/intl.dart'; // Import the intl package
 
 import 'package:new_quad_todoapp/Components/ScheduledContainer.dart';
@@ -38,6 +37,8 @@ class TaskCard extends StatelessWidget {
 
   // Create a DateFormat instance for the yyyy-MM-dd format
   final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+  // Create a DateFormat instance for the hour:minute AM/PM format
+  final DateFormat timeFormat = DateFormat('h:mm a');
 
   // Helper function to format DateTime to yyyy-MM-dd
   String formatDate(DateTime? dateTime) {
@@ -48,20 +49,22 @@ class TaskCard extends StatelessWidget {
     }
   }
 
+  // Helper function to format reminder time to hr:min AM/PM
+  String formatReminderTime(TimeOfDay? time) {
+    if (time != null) {
+      final now = DateTime.now();
+      final dateTime =
+          DateTime(now.year, now.month, now.day, time.hour, time.minute);
+      return timeFormat.format(dateTime); // Format the time
+    } else {
+      return ''; // Return an empty string if the reminderTime is null
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final uiController = Get.find<Uicontroller>();
     print(taskSteps);
-    // void setTaskStepsFromStrings(List<String> steps) {
-    //   // Clear the current list of TextEditingControllers
-    //   uiController.temptaskSteps.clear();
-
-    //   // Iterate through the list of strings
-    //   for (String step in steps) {
-    //     // Add a new TextEditingController with the text set to the current step
-    //     uiController.temptaskSteps.add(TextEditingController(text: step));
-    //   }
-    // }
 
     return Container(
       clipBehavior: Clip.hardEdge,
@@ -105,7 +108,7 @@ class TaskCard extends StatelessWidget {
                                       ? Colors.white
                                       : Colors.black,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 16),
+                                  fontSize: 18),
                             ),
                       SizedBox(
                         width: 5,
@@ -121,27 +124,20 @@ class TaskCard extends StatelessWidget {
                           "$TaskStatus",
                           style: TextStyle(
                             color: Colors.green,
-                            fontSize: 14,
+                            fontSize: 16,
                             fontFamily: 'Outfit',
                           ),
                         ),
                 ],
               ),
-              // Spacer(),
-
               SizedBox(
                 width: 30,
               ),
               Row(
                 children: [
-                  Obx(() {
-                    return isImportant
-                        ? InkWell(
-                            onTap: () {
-                              changePriorityFunction(uiId);
-                            },
-                            child: Icon(Icons.star, color: Colors.amber))
-                        : InkWell(
+                  isImportant == false
+                      ? Obx(() {
+                          return InkWell(
                             onTap: () {
                               changePriorityFunction(uiId);
                             },
@@ -152,7 +148,12 @@ class TaskCard extends StatelessWidget {
                                   : Colors.white,
                             ),
                           );
-                  }),
+                        })
+                      : InkWell(
+                          onTap: () {
+                            changePriorityFunction(uiId);
+                          },
+                          child: Icon(Icons.star, color: Colors.amber)),
                   PopupMenuButton(
                       itemBuilder: (context) => [
                             PopupMenuItem(child: Text("Pending"), value: 0),
@@ -183,7 +184,6 @@ class TaskCard extends StatelessWidget {
                         uiController.isBottomSheath.value = true;
                       }
                       initiateEditFunction(uiId);
-                      // setTaskStepsFromStrings(taskSteps);
                     },
                     icon: Icon(
                       Icons.edit_document,
@@ -207,10 +207,12 @@ class TaskCard extends StatelessWidget {
           ),
           if (reminderTime != null)
             Container(
+              width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(horizontal: 20),
               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                crossAxisAlignment: WrapCrossAlignment.start,
                 children: [
                   Icon(
                     Icons.timer_outlined,
@@ -232,7 +234,8 @@ class TaskCard extends StatelessWidget {
                     width: 5,
                   ),
                   Text(
-                    '$reminderTime', // Format the calendarDate
+                    formatReminderTime(
+                        reminderTime), // Format the reminder time
                     style: TextStyle(
                         fontFamily: 'Outfit',
                         color: Colors.yellow[700],
@@ -242,16 +245,14 @@ class TaskCard extends StatelessWidget {
                 ],
               ),
             ),
-
-          // Check if calendarDate is null
-
-          // If calendarDate is not null, format and display it
           if (calendarDate != null)
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
+              width: MediaQuery.of(context).size.width,
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                crossAxisAlignment: WrapCrossAlignment.start,
                 children: [
                   Icon(
                     Icons.calendar_month_outlined,
@@ -273,7 +274,7 @@ class TaskCard extends StatelessWidget {
                     width: 5,
                   ),
                   Text(
-                    '$calendarDate', // Format the calendarDate
+                    formatDate(calendarDate), // Format the calendarDate
                     style: TextStyle(
                         fontFamily: 'Outfit',
                         color: Colors.yellow[700],
@@ -283,15 +284,12 @@ class TaskCard extends StatelessWidget {
                 ],
               ),
             ),
-
           taskDaysRepeated.isEmpty
               ? SizedBox()
               : ScheduledContainer(
                   daysArray: taskDaysRepeated,
                   isFunctionEnabled: false,
                 ),
-
-          // Check if taskDetails is available
           taskDetails != null && taskDetails!.isNotEmpty
               ? Container(
                   width: MediaQuery.of(context).size.width,
@@ -313,7 +311,6 @@ class TaskCard extends StatelessWidget {
                     ],
                   ))
               : SizedBox(),
-
           taskSteps.isEmpty
               ? SizedBox()
               : Container(
@@ -339,8 +336,6 @@ class TaskCard extends StatelessWidget {
                     ],
                   ),
                 ),
-
-          // Check if timeSavedAt is available
           Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.symmetric(horizontal: 20),

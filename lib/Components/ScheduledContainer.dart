@@ -20,9 +20,10 @@ class ScheduledContainer extends StatelessWidget {
     // Adjusting layout based on screen width
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       // padding: const EdgeInsets.symmetric(),
-      padding: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 20, right: 20),
       child: Wrap(
         alignment: WrapAlignment.start,
         crossAxisAlignment: WrapCrossAlignment.start,

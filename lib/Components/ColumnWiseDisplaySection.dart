@@ -65,7 +65,7 @@ class ColumnWiseDataDisplay extends StatelessWidget {
                   timeSavedAt: task.timeSavedAt,
                   TaskStatus: task.taskStaus,
                   isImportant: task.isImportant,
-                  taskSteps: task.taskSteps.isBlank ? [] : task.taskSteps,
+                  taskSteps: task.taskSteps.isEmpty ? [] : task.taskSteps,
                 );
               }).toList(),
             ),
