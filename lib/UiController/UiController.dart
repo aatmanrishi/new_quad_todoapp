@@ -5,7 +5,7 @@ import 'taskStructure.dart';
 import 'package:uuid/uuid.dart';
 
 class Uicontroller extends GetxController {
-  late final double screenWidth;
+  // late final double screenWidth;
   RxString tempUiId = ''.obs;
   RxString tempUiIdAssociatedStaus = ''.obs;
 

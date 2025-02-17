@@ -269,7 +269,7 @@ class FinalForm extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () {
-                    if (uiController.screenWidth < 800) {
+                    if (MediaQuery.of(context).size.width < 800) {
                       uiController.isBottomSheath.value = false;
                     } else {
                       uiController.isRightPanel.value = false;
@@ -287,7 +287,7 @@ class FinalForm extends StatelessWidget {
                   onPressed: () {
                     if (uiController.isEdit.value == true) {
                       uiController.isEdit.value = false;
-                      if (uiController.screenWidth < 800) {
+                      if (MediaQuery.of(context).size.width < 800) {
                         uiController.isBottomSheath.value = false;
                       } else {
                         uiController.isRightPanel.value = false;

@@ -15,7 +15,7 @@ class ScheduledContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiController = Get.find<Uicontroller>();
-    final double screenWidth = uiController.screenWidth;
+    final double screenWidth = MediaQuery.of(context).size.width;
 
     // Adjusting layout based on screen width
     return Container(
@@ -26,8 +26,8 @@ class ScheduledContainer extends StatelessWidget {
       child: Wrap(
         alignment: WrapAlignment.start,
         crossAxisAlignment: WrapCrossAlignment.start,
-        runSpacing: screenWidth > 800 ? 7 : 10,
-        spacing: screenWidth > 800 ? 10 : 5,
+        runSpacing: MediaQuery.of(context).size.width > 800 ? 7 : 10,
+        spacing: MediaQuery.of(context).size.width > 800 ? 10 : 5,
         children: [
           // Create the day buttons directly inside the Wrap widget
           for (int index = 0; index < 7; index++)

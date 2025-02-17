@@ -23,7 +23,7 @@ class DataDisplaySection extends StatelessWidget {
             return Text(
               "${uiController.taskArray[uiController.taskIndex.value][uiController.taskArray[uiController.taskIndex.value].keys.toList()[1]]}",
               style: TextStyle(
-                fontFamily: 'Outfit',
+                  fontFamily: 'Outfit',
                   color: uiController.isDarkMode.value
                       ? Colors.white
                       : Colors.black,

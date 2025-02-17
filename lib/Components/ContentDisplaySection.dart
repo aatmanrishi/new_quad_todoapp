@@ -11,8 +11,13 @@ class ContentDisplaySection extends StatelessWidget {
     final uiController = Get.find<Uicontroller>();
     return Container(
       height: MediaQuery.of(context).size.height,
-      padding: EdgeInsets.fromLTRB(uiController.screenWidth < 800 ? 20.0 : 20,
-          20, uiController.screenWidth < 550 ? 20.0 : 60, 20),
+      padding: EdgeInsets.fromLTRB(
+        // Replace uiController.screenWidth with MediaQuery for dynamic width check
+        MediaQuery.of(context).size.width < 800 ? 20.0 : 20,
+        20,
+        MediaQuery.of(context).size.width < 550 ? 20.0 : 60,
+        20,
+      ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

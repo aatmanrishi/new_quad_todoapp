@@ -42,7 +42,11 @@ class InitialForm extends StatelessWidget {
           TextField(
             controller: uiController.taskHeading.value,
             onTap: () {
-              if (uiController.screenWidth > 800) {
+              uiController.isGrid.value == false;
+              print('Printing Grid Value');
+              print(uiController.isGrid.value);
+
+              if (MediaQuery.of(context).size.width > 800) {
                 uiController.isRightPanel.value = true;
               } else {
                 uiController.isBottomSheath.value = true;
@@ -84,7 +88,7 @@ class InitialForm extends StatelessWidget {
                   // Calendars
                   IconButton(
                       onPressed: () {
-                        if (uiController.screenWidth > 800) {
+                        if (MediaQuery.of(context).size.width > 800) {
                           if (uiController.isRightPanel.value == false) {
                             uiController.isRightPanel.value = true;
                           }
@@ -126,7 +130,7 @@ class InitialForm extends StatelessWidget {
                   // Reminder
                   IconButton(
                       onPressed: () {
-                        if (uiController.screenWidth > 800) {
+                        if (MediaQuery.of(context).size.width > 800) {
                           if (uiController.isRightPanel.value == false) {
                             uiController.isRightPanel.value = true;
                           }
@@ -142,11 +146,16 @@ class InitialForm extends StatelessWidget {
                           uiController.isReminder.value = false;
                         }
                       },
-                      icon: Icon(Icons.timer_sharp,color: uiController.isDarkMode.value==false?Colors.black:Colors.white,)),
+                      icon: Icon(
+                        Icons.timer_sharp,
+                        color: uiController.isDarkMode.value == false
+                            ? Colors.black
+                            : Colors.white,
+                      )),
                 ],
               ),
               // Add Button
-              if (uiController.screenWidth >= 500)
+              if (MediaQuery.of(context).size.width >= 500)
                 Obx(() {
                   return WideButton(
                     title: uiController.isEdit.value == false
@@ -172,7 +181,7 @@ class InitialForm extends StatelessWidget {
           ),
 
           Divider(),
-          if (uiController.screenWidth < 500)
+          if (MediaQuery.of(context).size.width < 500)
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
                 children: [
                   Image.asset(
                     "assets/logomark.png",
-                    height: uiController.screenWidth < 400 ? 30 : 50,
+                    height: MediaQuery.of(context).size.width < 400 ? 30 : 50,
                     fit: BoxFit.contain,
                   ),
                   SizedBox(width: 15),
@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Outfit',
                         color: Colors.green,
-                        fontSize: uiController.screenWidth < 400 ? 20 : 24,
+                        fontSize: MediaQuery.of(context).size.width < 400 ? 20 : 24,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -61,7 +61,7 @@ class Home extends StatelessWidget {
             actions: AppBarTrailingIcons,
           ),
           body: SingleChildScrollView(
-            child: uiController.screenWidth <= 800 ? MobileView() : PcView(),
+            child: MediaQuery.of(context).size.width <= 800 ? MobileView() : PcView(),
           ));
     });
   }

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiController = Get.find<Uicontroller>();
-    uiController.screenWidth = MediaQuery.of(context).size.width;
+    // uiController.screenWidth = MediaQuery.of(context).size.width;
     return GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -105,7 +105,7 @@ class TaskCard extends StatelessWidget {
                                       ? Colors.white
                                       : Colors.black,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 20),
+                                  fontSize: 16),
                             ),
                       SizedBox(
                         width: 5,
@@ -121,7 +121,7 @@ class TaskCard extends StatelessWidget {
                           "$TaskStatus",
                           style: TextStyle(
                             color: Colors.green,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontFamily: 'Outfit',
                           ),
                         ),
@@ -177,7 +177,7 @@ class TaskCard extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      if (uiController.screenWidth > 550) {
+                      if (MediaQuery.of(context).size.width > 550) {
                         uiController.isRightPanel.value = true;
                       } else {
                         uiController.isBottomSheath.value = true;
@@ -188,7 +188,7 @@ class TaskCard extends StatelessWidget {
                     icon: Icon(
                       Icons.edit_document,
                       color: Colors.yellow[700],
-                      size: 30,
+                      size: 25,
                     )),
                 SizedBox(
                   width: 2.5,
@@ -200,7 +200,7 @@ class TaskCard extends StatelessWidget {
                     icon: Icon(
                       Icons.delete_sweep_outlined,
                       color: Colors.red[400],
-                      size: 30,
+                      size: 25,
                     ))
               ],
             ),
@@ -215,7 +215,7 @@ class TaskCard extends StatelessWidget {
                   Icon(
                     Icons.timer_outlined,
                     color: Colors.deepPurpleAccent,
-                    size: 30,
+                    size: 25,
                   ),
                   Text(
                     'Remind me at :',
@@ -224,7 +224,7 @@ class TaskCard extends StatelessWidget {
                         color: uiController.isDarkMode.value
                             ? Colors.white
                             : Colors.black,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
                         textBaseline: TextBaseline.alphabetic),
                   ),
@@ -236,7 +236,7 @@ class TaskCard extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Outfit',
                         color: Colors.yellow[700],
-                        fontSize: 18,
+                        fontSize: 16,
                         textBaseline: TextBaseline.alphabetic),
                   ),
                 ],
@@ -256,7 +256,7 @@ class TaskCard extends StatelessWidget {
                   Icon(
                     Icons.calendar_month_outlined,
                     color: Colors.blue,
-                    size: 30,
+                    size: 25,
                   ),
                   Text(
                     'Scheduled At :',
@@ -265,7 +265,7 @@ class TaskCard extends StatelessWidget {
                         color: uiController.isDarkMode.value
                             ? Colors.white
                             : Colors.black,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700,
                         textBaseline: TextBaseline.alphabetic),
                   ),
@@ -277,7 +277,7 @@ class TaskCard extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Outfit',
                         color: Colors.yellow[700],
-                        fontSize: 18,
+                        fontSize: 16,
                         textBaseline: TextBaseline.alphabetic),
                   ),
                 ],
@@ -355,6 +355,7 @@ class TaskCard extends StatelessWidget {
                 Text(
                   'Saved At :',
                   style: TextStyle(
+                      fontSize: 14,
                       fontFamily: 'Outfit',
                       color: uiController.isDarkMode.value
                           ? Colors.white
@@ -367,7 +368,8 @@ class TaskCard extends StatelessWidget {
                 ),
                 Text(
                   formatDate(timeSavedAt), // Format timeSavedAt
-                  style: TextStyle(fontFamily: 'Outfit', color: Colors.green),
+                  style: TextStyle(
+                      fontSize: 14, fontFamily: 'Outfit', color: Colors.green),
                 ),
               ],
             ),
