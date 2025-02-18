@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_quad_todoapp/Pages/SignIn.dart';
 
-
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -18,7 +17,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Image.asset(
-          "assets/applogo.png",
+          "assets/logo1.png",
           height: 300,
           fit: BoxFit.contain,
         ),

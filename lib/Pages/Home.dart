@@ -13,7 +13,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     // Create a GlobalKey to control the Scaffold state
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    final uiController = Get.find<Uicontroller>();
 
     return Obx(() {
       return SafeArea(

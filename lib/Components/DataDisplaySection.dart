@@ -38,9 +38,7 @@ class DataDisplaySection extends StatelessWidget {
         // Column or Grid Display Section
         Obx(() {
           return uiController.isGrid.value == false
-              ? Container(
-                  // height: MediaQuery.of(context).size.height,
-                  child: SingleChildScrollView(child: ColumnWiseDataDisplay()))
+              ? SingleChildScrollView(child: ColumnWiseDataDisplay())
               : GridWiseDisplaySection();
         }),
 
@@ -99,6 +97,74 @@ class DataDisplaySection extends StatelessWidget {
           } else {
             return SizedBox();
           }
+        }),
+
+        // Add Image if no tasks for the current taskIndex
+        Obx(() {
+          // Check if there are no tasks for the corresponding taskIndex
+          if (uiController.taskIndex.value == 0 &&
+              uiController.tasksData.isEmpty) {
+            return Column(
+              children: [
+                Image.asset(
+                  'assets/Kanban planning board on tablet.png',
+                  height: 300, // Set the image height to 300px
+                  width: double.infinity,
+                  fit: BoxFit
+                      .cover, // Optional: Use this to scale the image to fit the container
+                ),
+                SizedBox(height: 15),
+              ],
+            );
+          } else if (uiController.taskIndex.value == 1 &&
+              uiController.completeData.isEmpty) {
+            return Column(
+              children: [
+                Image.asset(
+                  'assets/Kanban planning board on tablet.png',
+                  height: 300,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: 15),
+              ],
+            );
+          } else if (uiController.taskIndex.value == 2 &&
+              uiController.tasksData
+                  .where((task) => task.isImportant)
+                  .isEmpty) {
+            return Column(
+              children: [
+                Image.asset(
+                  'assets/Kanban planning board on tablet.png',
+                  height: 300,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: 15),
+              ],
+            );
+          } else if (uiController.taskIndex.value == 3 &&
+              uiController.tasksData
+                  .where((task) => task.calendarDate != null)
+                  .isEmpty) {
+            return Column(
+              children: [
+                SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: Image.asset(
+                    height: 300,
+                    width: 300,
+                    'assets/Kanban planning board on tablet.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                SizedBox(height: 15),
+              ],
+            );
+          }
+          return SizedBox(); // Return SizedBox if tasks exist for this section
         }),
       ],
     );

@@ -97,33 +97,37 @@ class YourPieChart extends StatelessWidget {
     double remainingValue = taskDataValue - completeDataValue;
     // if (remainingValue < 0) remainingValue = 0.0; // Ensure no negative values
 
-    return PieChart(
-      PieChartData(
-        sections: [
-          // Completed Tasks Section
-          PieChartSectionData(
-            value: uiController.completeData.length.toDouble(),
-            showTitle: true,
+    return SizedBox(
+      width: 150,
+      height: 150,
+      child: PieChart(
+        PieChartData(
+          sections: [
+            // Completed Tasks Section
+            PieChartSectionData(
+              value: uiController.completeData.length.toDouble(),
+              showTitle: true,
 
-            radius: 30,
-            color: const Color.fromARGB(255, 97, 251, 176), // Green color
-          ),
-          // Remaining Tasks Section
-          PieChartSectionData(
-            value: uiController.tasksData.length.toDouble(),
-            showTitle: true,
+              radius: 30,
+              color: const Color.fromARGB(255, 97, 251, 176), // Green color
+            ),
+            // Remaining Tasks Section
+            PieChartSectionData(
+              value: uiController.tasksData.length.toDouble(),
+              showTitle: true,
 
-            radius: 30,
-            color: Colors.green[900]!, // Darker green for remaining tasks
-          ),
-          // Total Tasks Section (if you want to display the total tasks)
-          PieChartSectionData(
-            value: taskDataValue - (completeDataValue + remainingValue),
-            showTitle: false,
-            radius: 30,
-            color: Colors.blue,
-          ),
-        ],
+              radius: 30,
+              color: Colors.green[900]!, // Darker green for remaining tasks
+            ),
+            // Total Tasks Section (if you want to display the total tasks)
+            PieChartSectionData(
+              value: taskDataValue - (completeDataValue + remainingValue),
+              showTitle: false,
+              radius: 30,
+              color: Colors.blue,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -131,7 +135,7 @@ class YourPieChart extends StatelessWidget {
   PieChartTileContainer() {
     final uiController = Get.find<Uicontroller>();
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      // margin: EdgeInsets.only(bottom: 10),
       color: uiController.isDarkMode.value == false
           ? Colors.green[100]
           : Color(0xFF232323),

@@ -80,7 +80,6 @@ class TaskCard extends StatelessWidget {
                   : Colors.black,
               width: 0.5)),
       child: ExpansionTile(
-        tilePadding: EdgeInsets.all(0),
         title: Container(
           padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
           decoration: BoxDecoration(),
@@ -298,16 +297,20 @@ class TaskCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "$taskDetails",
-                        style: TextStyle(
-                            fontFamily: 'Outfit',
-                            fontSize: 15,
-                            color: uiController.isDarkMode.value
-                                ? Colors.white
-                                : Colors.black,
-                            fontWeight: FontWeight.w500),
-                      ),
+                      Wrap(
+                        children: [
+                          Text(
+                            "$taskDetails",
+                            style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontSize: 15,
+                                color: uiController.isDarkMode.value
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      )
                     ],
                   ))
               : SizedBox(),

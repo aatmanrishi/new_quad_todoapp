@@ -8,11 +8,10 @@ class ContentDisplaySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uiController = Get.find<Uicontroller>();
     return Container(
       height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.fromLTRB(
-        // Replace uiController.screenWidth with MediaQuery for dynamic width check
+
         MediaQuery.of(context).size.width < 800 ? 20.0 : 20,
         20,
         MediaQuery.of(context).size.width < 550 ? 20.0 : 60,

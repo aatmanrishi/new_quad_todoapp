@@ -30,11 +30,14 @@ class GridWiseDisplaySection extends StatelessWidget {
                       double availableWidth = constraints.maxWidth;
                       double cardWidth = availableWidth / 4;
 
+                      // Ensure card width is not less than 220
+                      cardWidth = cardWidth < 220 ? 220 : cardWidth;
+
                       return Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
+                        spacing: 5,
+                        runSpacing: 5,
                         children: uiController.tasksData.map<Widget>((task) {
-                          return Container(
+                          return SizedBox(
                             width: cardWidth,
                             child: TaskCard(
                               uiId: task.uiId,
@@ -65,15 +68,18 @@ class GridWiseDisplaySection extends StatelessWidget {
                       double availableWidth = constraints.maxWidth;
                       double cardWidth = availableWidth / 4;
 
+                      // Ensure card width is not less than 220
+                      cardWidth = cardWidth < 220 ? 220 : cardWidth;
+
                       return Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
+                        spacing: 5,
+                        runSpacing: 5,
                         children: uiController.tasksData
                             .where((task) =>
                                 task.taskDetails != null &&
                                 task.taskDetails!.isNotEmpty)
                             .map<Widget>((task) {
-                          return Container(
+                          return SizedBox(
                             width: cardWidth,
                             child: TaskCard(
                               uiId: task.uiId,
@@ -103,13 +109,16 @@ class GridWiseDisplaySection extends StatelessWidget {
                     double availableWidth = constraints.maxWidth;
                     double cardWidth = availableWidth / 4;
 
+                    // Ensure card width is not less than 220
+                    cardWidth = cardWidth < 220 ? 220 : cardWidth;
+
                     return Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
+                      spacing: 5,
+                      runSpacing: 5,
                       children: uiController.tasksData
                           .where((task) => task.isImportant)
                           .map<Widget>((task) {
-                        return Container(
+                        return SizedBox(
                           width: cardWidth,
                           child: TaskCard(
                             uiId: task.uiId,
@@ -138,13 +147,16 @@ class GridWiseDisplaySection extends StatelessWidget {
                     double availableWidth = constraints.maxWidth;
                     double cardWidth = availableWidth / 4;
 
+                    // Ensure card width is not less than 220
+                    cardWidth = cardWidth < 220 ? 220 : cardWidth;
+
                     return Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
+                      spacing: 5,
+                      runSpacing: 5,
                       children: uiController.tasksData
                           .where((task) => task.calendarDate != null)
                           .map<Widget>((task) {
-                        return Container(
+                        return SizedBox(
                           width: cardWidth,
                           child: TaskCard(
                             uiId: task.uiId,
@@ -173,9 +185,12 @@ class GridWiseDisplaySection extends StatelessWidget {
                     double availableWidth = constraints.maxWidth;
                     double cardWidth = availableWidth / 4;
 
+                    // Ensure card width is not less than 220
+                    cardWidth = cardWidth < 220 ? 220 : cardWidth;
+
                     return Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
+                      spacing: 5,
+                      runSpacing: 5,
                       children: uiController.tasksData.where((task) {
                         try {
                           String key = uiController
@@ -189,7 +204,7 @@ class GridWiseDisplaySection extends StatelessWidget {
                           return false;
                         }
                       }).map<Widget>((task) {
-                        return Container(
+                        return SizedBox(
                           width: cardWidth,
                           child: TaskCard(
                             uiId: task.uiId,
