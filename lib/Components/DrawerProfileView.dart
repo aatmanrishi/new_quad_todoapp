@@ -13,7 +13,10 @@ class DrawerProfileView extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage("assets/applogo.png"),
+            backgroundImage: AssetImage(
+              "assets/user.png",
+            ),
+            backgroundColor: Colors.yellow,
             radius: 75,
           ),
           SizedBox(

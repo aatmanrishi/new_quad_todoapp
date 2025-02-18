@@ -4,7 +4,6 @@ import 'package:new_quad_todoapp/Components/AppBarTrailingIcons.dart';
 import 'package:new_quad_todoapp/Components/CustomDrawer.dart';
 import 'package:new_quad_todoapp/Components/MobileView.dart';
 import 'package:new_quad_todoapp/Components/PcView.dart';
-import 'package:new_quad_todoapp/UiController/UiController.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

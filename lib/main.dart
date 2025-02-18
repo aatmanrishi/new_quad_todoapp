@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final uiController = Get.find<Uicontroller>();
+    // final uiController = Get.find<Uicontroller>();
     // uiController.screenWidth = MediaQuery.of(context).size.width;
     return GetMaterialApp(
         title: 'Flutter Demo',

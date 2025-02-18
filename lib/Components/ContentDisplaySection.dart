@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:new_quad_todoapp/Components/DataDisplaySection.dart';
-import 'package:new_quad_todoapp/UiController/UiController.dart';
 
 class ContentDisplaySection extends StatelessWidget {
   const ContentDisplaySection({super.key});
@@ -11,7 +10,6 @@ class ContentDisplaySection extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.fromLTRB(
-
         MediaQuery.of(context).size.width < 800 ? 20.0 : 20,
         20,
         MediaQuery.of(context).size.width < 550 ? 20.0 : 60,

@@ -20,15 +20,46 @@ class DataDisplaySection extends StatelessWidget {
               uiController.tasksData.isEmpty) {
             return SizedBox();
           } else {
-            return Text(
-              "${uiController.taskArray[uiController.taskIndex.value][uiController.taskArray[uiController.taskIndex.value].keys.toList()[1]]}",
-              style: TextStyle(
-                  fontFamily: 'Outfit',
-                  color: uiController.isDarkMode.value
-                      ? Colors.white
-                      : Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22),
+            return Column(
+              crossAxisAlignment: MediaQuery.of(context).size.width > 300
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "${uiController.taskArray[uiController.taskIndex.value][uiController.taskArray[uiController.taskIndex.value].keys.toList()[1]]}",
+                  style: TextStyle(
+                      fontFamily: 'Outfit',
+                      color: uiController.isDarkMode.value
+                          ? Colors.white
+                          : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22),
+                ),
+                SizedBox(
+                  height: 120,
+                  width: 250,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                        color: uiController.isDarkMode.value == false
+                            ? Colors.green[50]
+                            : Color(0xFF232323),
+                        border: Border.all(color: Colors.black, width: 0.25)),
+                    padding: EdgeInsets.all(20),
+                    child: Center(
+                      child: Text(
+                        "No Notes Available 😵",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: uiController.isDarkMode.value == false
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                    ),
+                  ),
+                )
+              ],
             );
           }
         }),
@@ -97,78 +128,6 @@ class DataDisplaySection extends StatelessWidget {
           } else {
             return SizedBox();
           }
-        }),
-
-        // Add Image if no tasks for the current taskIndex
-        Obx(() {
-          // Check if there are no tasks for the corresponding taskIndex
-          if (uiController.taskIndex.value == 0 &&
-              uiController.tasksData.isEmpty) {
-            return Column(
-              children: [
-                Image.asset(
-                  'assets/Kanban planning board on tablet.png',
-                  height: 300, // Set the image height to 300px
-                  width: double.infinity,
-                  fit: BoxFit
-                      .cover, // Optional: Use this to scale the image to fit the container
-                ),
-                SizedBox(height: 15),
-              ],
-            );
-          } else if (uiController.taskIndex.value == 1 &&
-              uiController.completeData.isEmpty) {
-            return Column(
-              children: [
-                Image.asset(
-                  'assets/Kanban planning board on tablet.png',
-                  height: 300,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(height: 15),
-              ],
-            );
-          } else if (uiController.taskIndex.value == 2 &&
-              uiController.tasksData
-                  .where((task) => task.isImportant)
-                  .isEmpty) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Image.asset(
-                    'assets/Kanban planning board on tablet.png',
-                    height: 300,
-                    width: 300,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(height: 15),
-              ],
-            );
-          } else if (uiController.taskIndex.value == 3 &&
-              uiController.tasksData
-                  .where((task) => task.calendarDate != null)
-                  .isEmpty) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Image.asset(
-                    height: 300,
-                    width: 300,
-                    'assets/Kanban planning board on tablet.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(height: 15),
-              ],
-            );
-          }
-          return SizedBox(); // Return SizedBox if tasks exist for this section
         }),
       ],
     );
