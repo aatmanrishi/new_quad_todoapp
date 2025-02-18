@@ -15,11 +15,35 @@ class DataDisplaySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Display task heading or "No Notes Available" card when no task data
         Obx(() {
-          if (uiController.completeData.isNotEmpty &&
-              uiController.tasksData.isEmpty) {
-            return SizedBox();
+          if (uiController.tasksData.isEmpty) {
+            return SizedBox(
+              height: 120,
+              width: 250,
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                    color: uiController.isDarkMode.value == false
+                        ? Colors.green[50]
+                        : Color(0xFF232323),
+                    border: Border.all(color: Colors.black, width: 0.25)),
+                padding: EdgeInsets.all(20),
+                child: Center(
+                  child: Text(
+                    "No Notes Available 😵",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: uiController.isDarkMode.value == false
+                            ? Colors.black
+                            : Colors.white),
+                  ),
+                ),
+              ),
+            );
           } else {
+            // If tasks data is available, display task heading
             return Column(
               crossAxisAlignment: MediaQuery.of(context).size.width > 300
                   ? CrossAxisAlignment.start
@@ -35,34 +59,11 @@ class DataDisplaySection extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 22),
                 ),
-                SizedBox(
-                  height: 120,
-                  width: 250,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                        color: uiController.isDarkMode.value == false
-                            ? Colors.green[50]
-                            : Color(0xFF232323),
-                        border: Border.all(color: Colors.black, width: 0.25)),
-                    padding: EdgeInsets.all(20),
-                    child: Center(
-                      child: Text(
-                        "No Notes Available 😵",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: uiController.isDarkMode.value == false
-                                ? Colors.black
-                                : Colors.white),
-                      ),
-                    ),
-                  ),
-                )
               ],
             );
           }
         }),
+
         SizedBox(
           height: 15,
         ),
@@ -77,7 +78,7 @@ class DataDisplaySection extends StatelessWidget {
           height: 20,
         ),
 
-        // Completed Tasks Heading and Cards if completeData is not empty
+        // Show "Completed Tasks" heading and cards if completeData is not empty
         Obx(() {
           if (uiController.completeData.isNotEmpty) {
             return Column(
@@ -93,13 +94,14 @@ class DataDisplaySection extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       fontSize: 22),
                 ),
-                Divider()
+                Divider(),
               ],
             );
           } else {
             return SizedBox();
           }
         }),
+
         SizedBox(
           height: 15,
         ),
