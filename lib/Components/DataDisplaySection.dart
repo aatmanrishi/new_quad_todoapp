@@ -135,11 +135,15 @@ class DataDisplaySection extends StatelessWidget {
                   .isEmpty) {
             return Column(
               children: [
-                Image.asset(
-                  'assets/Kanban planning board on tablet.png',
+                SizedBox(
                   height: 300,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                  width: 300,
+                  child: Image.asset(
+                    'assets/Kanban planning board on tablet.png',
+                    height: 300,
+                    width: 300,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(height: 15),
               ],
