@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Import the intl package
 
@@ -81,7 +82,7 @@ class TaskCard extends StatelessWidget {
               width: 0.5)),
       child: ExpansionTile(
         title: Container(
-          padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
           decoration: BoxDecoration(),
           height: 60,
           width: MediaQuery.of(context).size.width,
@@ -89,6 +90,7 @@ class TaskCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // Left Side Element
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -97,8 +99,8 @@ class TaskCard extends StatelessWidget {
                       taskTitle.isEmpty
                           ? SizedBox()
                           : Text(
-                              taskTitle.length > 12
-                                  ? "${taskTitle.substring(0, 12)}..." // Add ellipsis if title is longer than 12 characters
+                              taskTitle.length > 5
+                                  ? "${taskTitle.substring(0, 5)}..." // Add ellipsis if title is longer than 12 characters
                                   : "$taskTitle",
                               maxLines: 3,
                               style: TextStyle(
@@ -129,10 +131,11 @@ class TaskCard extends StatelessWidget {
                         ),
                 ],
               ),
-              SizedBox(
-                width: 30,
-              ),
+              // SizedBox(
+              //   width: 30,
+              // ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   isImportant == false
                       ? Obx(() {
@@ -154,6 +157,7 @@ class TaskCard extends StatelessWidget {
                           },
                           child: Icon(Icons.star, color: Colors.amber)),
                   PopupMenuButton(
+                      padding: EdgeInsets.all(0),
                       itemBuilder: (context) => [
                             PopupMenuItem(child: Text("Pending"), value: 0),
                             PopupMenuItem(child: Text("Complete"), value: 1),
@@ -294,22 +298,25 @@ class TaskCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.fromLTRB(10, 10, 0, 15),
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  child: Wrap(
+                    alignment: WrapAlignment.start,
+                    crossAxisAlignment: WrapCrossAlignment.start,
                     children: [
-                      Wrap(
-                        children: [
-                          Text(
-                            "$taskDetails",
-                            style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontSize: 15,
-                                color: uiController.isDarkMode.value
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
+                      Container(
+                        child: Text(
+                          "$taskDetails",
+                          // maxline
+                          overflow: TextOverflow.ellipsis,
+                          // softWrap: true,
+                          // maxLines: 10,
+                          style: TextStyle(
+                              fontFamily: 'Outfit',
+                              fontSize: 15,
+                              color: uiController.isDarkMode.value
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontWeight: FontWeight.w500),
+                        ),
                       )
                     ],
                   ))
@@ -326,6 +333,8 @@ class TaskCard extends StatelessWidget {
                           for (int i = 0; i < taskSteps.length; i++)
                             Text(
                               '➡️ ${taskSteps[i]}',
+                              softWrap: true,
+                              maxLines: 10,
                               style: TextStyle(
                                   fontFamily: 'Outfit',
                                   fontSize: 15,
